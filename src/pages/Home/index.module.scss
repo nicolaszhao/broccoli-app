@@ -1,0 +1,28 @@
+.container {
+  padding: .8em;
+}
+
+.profile {
+  dt {
+    margin: .8em 0 .4em;
+    min-width: 6em;
+    font-weight: bold;
+  }
+
+  &-footer {
+    margin-top: 1em;
+  }
+}
+
+.error {
+  margin: .5em 0;
+  padding: .5em;
+  border: solid 1px #e41f0c;
+  border-radius: .2em;
+  background: #fcfabe;
+  color: #e41f0c;
+
+  strong {
+    margin-right: .5em;
+  }
+}

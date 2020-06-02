@@ -1,0 +1,46 @@
+@import "sanitize.css";
+
+:root {
+
+  /* 14px */
+  font-size: 0.875em;
+
+}
+
+body {
+  font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+dl, dd {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  color: currentColor;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  outline: none;
+  user-select: none;
+  background: none;
+}

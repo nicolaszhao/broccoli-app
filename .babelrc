@@ -1,0 +1,5 @@
+{
+  "presets": [
+    ["@hammal/babel-preset-app", { "react": true }]
+  ]
+}
