@@ -1,28 +1,23 @@
 /* eslint-disable import/prefer-default-export */
-import Ajax from '@totebox/ajax';
-import { URLS } from './constants';
+import axios from 'axios';
+import { partial } from '../utils';
 
-// TODO: 调整为真实接口后需要删除 import 和 mock()
-import mock from './mock';
+const URLS = {
+  INVITE: 'https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth',
+};
 
-mock();
-
-const ajax = Ajax({
-  timeout: 5000,
-  interceptors: {
-    response(data) {
-      if (data.status === 0) {
-        return Promise.reject(new Error(data.message || 'Server Error'));
-      }
-      return data.data;
-    },
-    error(err) {
-      err.message = `Request api error, url: ${err.config ? err.config.url : ''}, message: ${err.message}`;
-      return err;
-    },
+const ajax = axios.create({
+  timeout: 8000,
+  validateStatus(status) {
+    return (status >= 200 && status < 300) || status === 400;
   },
 });
 
-export function fetchUser() {
-  return ajax.get(URLS.USER);
-}
+ajax.interceptors.response.use(({ data, status }) => {
+  if (status === 400) {
+    return Promise.reject(data.errorMessage);
+  }
+  return data;
+});
+
+export const invite = partial(ajax.post, URLS.INVITE);
