@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect, useState, Suspense, lazy,
+} from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { hot } from 'react-hot-loader/root';
 import { Modal } from '@totebox/ui';
-import InviteForm from './components/InviteForm';
 import * as api from './api';
 import './app.scss';
 
@@ -43,6 +44,8 @@ const useInvite = (formData) => {
 
   return state;
 };
+
+const InviteForm = lazy(() => import('./components/InviteForm'));
 
 const App = () => {
   const [formData, setFormData] = useState(null);
@@ -113,10 +116,12 @@ const App = () => {
         onClose={handleInviteModalClose}
       >
         <div className="invite-modal-wrapper">
-          <InviteForm
-            sending={fetching}
-            onSend={handleInviteFormSend}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <InviteForm
+              sending={fetching}
+              onSend={handleInviteFormSend}
+            />
+          </Suspense>
           {error && (
             <p className="invite-error">
               {error.message}
