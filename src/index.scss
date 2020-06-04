@@ -1,0 +1,90 @@
+@import "sanitize.css";
+
+:root {
+  font-size: 16 / 375 * 100vw;
+  --primary-color: #555;
+  --content-color: #EEF1F5;
+}
+
+@media only screen and (max-width: 320px) {
+  :root {
+    font-size: .875em;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  :root {
+    font-size: 2.625em;
+  }
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+  color: var(--primary-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+dl, dd {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  color: currentColor;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  outline: none;
+  user-select: none;
+  background: none;
+}
+
+button,
+input {
+  font-family: inherit;
+  font-size: inherit;
+  color: currentColor;
+}
+
+.button {
+  width: 100%;
+  padding: .8em ;
+  color: #fff;
+  text-shadow: 0 -1px 0 #a8b0a7;
+  border-bottom: .125em solid #a8b0a7;
+  background: #cbdeca;
+  transition-property: background-color, color;
+  transition-duration: 0.1s;
+
+  &:active {
+    border-top: .125rem solid transparent;
+    border-bottom: 0;
+    color: #626463;
+    text-shadow: 0 1px 0 hsla(0, 0%, 100%, .5);
+    background: #a8b0a7;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    color: hsla(0, 0, 100%, .7);
+  }
+}

@@ -1,58 +1,136 @@
+@keyframes fade-down {
+  from {
+    transform: translate3d(0, -150%, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    transform: translate3d(0, 150%, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#app {
+  height: 100%;
+}
+
 .container {
-  padding: 1em;
-
-  h1, h2, h3 {
-    margin: .8em 0 .4em;
-  }
-
-  h1 {
-    text-align: center;
-  }
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 .content {
-  padding: .8em;
-}
-
-.nav {
-  text-align: center;
-
-  li {
-    display: inline-block;
-    padding: 0 .8em;
-
-    &:not(:last-child) {
-      border-right: solid 1px rgba(0, 0, 0, .2);
-    }
-  }
-
-  .active {
-    text-decoration: underline dotted #ccc;
-    color: #0cf;
-  }
-}
-
-.loading {
+  flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  font-size: 1.5rem;
-  background: hsla(0, 0%, 100%, .7);
+  color: var(--content-color);
+  background-image: linear-gradient(90deg, transparent 50%, currentColor 50%);
+  background-size: .625rem .625rem;
 }
 
-.button {
-  border: solid 1px rgba(0, 0, 0, .4);
-  border-radius: .2em;
-  padding: .4em .8em;
-  background: linear-gradient(transparent 50%, rgba(0, 0, 0, .1) 50%);
-  text-shadow: 0 1px 0 #fff;
+.header,
+.footer {
+  text-align: center;
+  color: #fff;
+  background: #abafb4;
+}
+
+.header {
+  padding: .5rem;
+
+  h1 {
+    font-family: made_sunflowerregular;
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: #e6f2e7;
+    text-shadow: 0 0 4px, 0 0 8px;
+  }
+}
+
+.footer {
+  padding: .8rem;
+  font-size: .8rem;
+
+  p {
+    margin: .4em 0;
+  }
+
+  &-desc {
+    font-size: .9em;
+    color: hsla(0, 0%, 100%, .7);
+  }
+
+  &-copy {
+    display: inline-block;
+    margin: 0 .3rem;
+  }
+
+  &-love {
+    display: inline-block;
+    margin: 0 .3em;
+    font-family: "apple color emoji", "segoe ui emoji", "segoe ui symbol", "noto color emoji";
+    font-size: .8em;
+  }
+}
+
+.main-content {
+  margin: auto;
+  text-align: center;
+  color: var(--primary-color);
+
+  .slogan {
+    font-family: made_sunflowerregular;
+    font-size: 1.5rem;
+    text-shadow: -3px -3px #fff, -3px 3px #fff, 3px -3px #fff, 3px 3px #fff;
+    margin-bottom: 1rem;
+    animation: fade-down .8s ease-out;
+  }
+
+  .sub-slogan {
+    color: #777;
+    animation: fade-up .8s ease-out;
+  }
+}
+
+.invite-button {
+  margin: 1.2rem 0;
+  font-size: 1.2rem;
+  animation: fade .8s .4s ease-out both;
 
   &:active {
-    background-color: rgba(0, 0, 0, .4);
+    background: #a8b0a7;
+  }
+}
+
+.invite-modal-wrapper {
+  width: 70vw;
+  padding: .8rem 0;
+}
+
+.invite-error {
+  padding: .8rem 0;
+  color: hsl(0, 80%, 50%);
+}
+
+.invite-ok {
+  text-align: center;
+}
+
+@media only screen and (min-width: 800px) {
+  .invite-modal-wrapper {
+    width: 15rem;
   }
 }
