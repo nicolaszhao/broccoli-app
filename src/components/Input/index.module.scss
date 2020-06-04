@@ -1,0 +1,9 @@
+.normal {
+  outline: none;
+  border: 0;
+  padding: .3rem;
+
+  &::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, .4);
+  }
+}
