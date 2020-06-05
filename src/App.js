@@ -4,46 +4,8 @@ import React, {
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { hot } from 'react-hot-loader/root';
 import { Modal } from '@totebox/ui';
-import * as api from './api';
+import { useInvite } from './hooks';
 import './app.scss';
-
-const useInvite = (formData) => {
-  const [state, setState] = useState({
-    fetching: false,
-    error: null,
-    ok: false,
-  });
-
-  useEffect(() => {
-    let didCancel = false;
-
-    const invite = async ({ name, email }) => {
-      setState(() => ({ fetching: true, error: null, ok: false }));
-      try {
-        await api.invite({ name, email });
-        !didCancel && setState((prevState) => ({ ...prevState, fetching: false, ok: true }));
-      } catch (error) {
-        !didCancel && setState(
-          (prevState) => ({ ...prevState, fetching: false, error: new Error(error) }),
-        );
-      }
-    };
-
-    const reset = () => setState(() => ({ fetching: false, error: null, ok: false }));
-
-    if (!formData) {
-      reset();
-    } else {
-      invite(formData);
-    }
-
-    return () => {
-      didCancel = true;
-    };
-  }, [formData]);
-
-  return state;
-};
 
 const InviteForm = lazy(() => import('./components/InviteForm'));
 
@@ -51,7 +13,7 @@ const App = () => {
   const [formData, setFormData] = useState(null);
   const [inviteModalVisible, setInviteModalVisible] = useState(false);
   const [okModalVisible, setOkModalVisible] = useState(false);
-  const { fetching, ok, error } = useInvite(formData);
+  const { inviting, ok, error } = useInvite(formData);
 
   function handleInviteFormSend(data) {
     setFormData(data);
@@ -118,7 +80,7 @@ const App = () => {
         <div className="invite-modal-wrapper">
           <Suspense fallback={<div>Loading...</div>}>
             <InviteForm
-              sending={fetching}
+              sending={inviting}
               onSend={handleInviteFormSend}
             />
           </Suspense>

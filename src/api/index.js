@@ -15,7 +15,7 @@ const ajax = axios.create({
 
 ajax.interceptors.response.use(({ data, status }) => {
   if (status === 400) {
-    return Promise.reject(data.errorMessage);
+    return Promise.reject(new Error(data.errorMessage || 'Server Error'));
   }
   return data;
 });
