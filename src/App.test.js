@@ -1,14 +1,18 @@
 import React from 'react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import { cleanup, fireEvent, render, screen, act } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 import { URLS } from './api';
 
 beforeEach(() => {
   render(<App />);
+
+  // 在点击页面的“邀请”按钮后，邀请表单会异步展示
   fireEvent.click(screen.getByRole('button', { name: 'Request an invite' }));
+
 });
+
 afterEach(cleanup);
 
 test('click the invite button on the main page to display the invitation form', async () => {
@@ -26,6 +30,9 @@ describe('validate invite form', () => {
     fireEvent.click(sendButton);
 
     let errors = [];
+
+    // 这里的消息是通过异步验证触发的，需要进行 promise 等待
+    // 每找一个元素，@testing-library/react 的内部会调用封装的 act(), 所以需要分开 push()，不能用 promise.all()
     try {
       errors.push(await screen.findByText("'name' is required"));
       errors.push(await screen.findByText("'email' is required"));
@@ -117,6 +124,7 @@ describe('send invite form', () => {
   });
 
   test('invite failed and displays server error', async () => {
+    // 邮箱输入 usedemail@airwallex.com 时，表示已经被使用，无法被邀请，服务端会抛出 400 错误
     await send({
       name: 'tester2',
       email: 'usedemail@airwallex.com',
