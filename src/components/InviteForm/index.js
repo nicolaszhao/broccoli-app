@@ -28,12 +28,12 @@ export default function InviteForm({
         name="comfirm_email"
         label="Comfirm Email"
         rules={[
-          { required: true, message: '"comfirm email" is required.' },
+          { required: true, message: '\'comfirm email\' is required.' },
           (context) => ({
             validator(rule, value) {
               const { email } = context.getFieldsValue(true);
               if (email !== value) {
-                return Promise.reject('"comfirm email" is not same as email.');
+                return Promise.reject('\'comfirm email\' is not same as email.');
               }
               return Promise.resolve();
             },

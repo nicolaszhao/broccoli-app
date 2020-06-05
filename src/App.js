@@ -123,7 +123,7 @@ const App = () => {
             />
           </Suspense>
           {error && (
-            <p className="invite-error">
+            <p className="invite-error" data-testid="invite-error">
               {error.message}
             </p>
           )}

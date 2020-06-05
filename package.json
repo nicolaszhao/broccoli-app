@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "hammal-cli-service start",
-    "build": "hammal-cli-service build"
+    "build": "hammal-cli-service build",
+    "test": "cross-env NODE_ENV=test jest"
   },
   "husky": {
     "hooks": {
@@ -17,7 +18,9 @@
   "devDependencies": {
     "@hammal/babel-preset-app": "^0.11.0",
     "@hammal/cli-service": "^0.12.1",
+    "@testing-library/react": "^10.2.0",
     "babel-eslint": "^10.0.1",
+    "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "eslint-config-nicolaz": "^0.6.5",
     "eslint-plugin-import": "^2.20.2",
@@ -27,6 +30,7 @@
     "husky": "^3.0.9",
     "jest": "^26.0.1",
     "lint-staged": "^9.4.2",
+    "msw": "^0.19.0",
     "react-hot-loader": "^4.12.17"
   },
   "dependencies": {
@@ -48,5 +52,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.s?css$": "<rootDir>/__mocks__/styleMock.js"
+    }
   }
 }
