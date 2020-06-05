@@ -2,7 +2,7 @@
 
 ## 起步
 
-### 安装/更新项目依赖
+### 安装项目依赖
 
 ```
 npm install
@@ -14,6 +14,10 @@ npm install
 
 启动一个用于开发环境的服务，在浏览器中打开 [http://localhost:3003/](http://localhost:3003/)
 
+#### `npm test`
+
+运行单元测试
+
 #### `npm run build`
 
 构建/打包代码为生产环境用的静态资源
@@ -21,17 +25,6 @@ npm install
 ### 自定义配置
 
 查看 [@hammal/cli-service 配置参考](https://github.com/nicolaszhao/hammal/blob/master/packages/cli-service/README.md)
-
-## 内置能力
-
-* [x] 支持 [ES6+](http://es6.ruanyifeng.com/) 语法和原生 API
-* [x] [autoprefixer](https://github.com/postcss/autoprefixer)
-* [x] [sanitize.css](https://github.com/csstools/sanitize.css) - 面向移动开发的默认样式重置，可根据 [browserslist](https://github.com/browserslist/browserslist) 优化
-* [x] [axios](https://github.com/axios/axios) - 最流行的 Ajax 数据处理（已封装为高级方法 [@totebox/ajax](https://github.com/nicolaszhao/totebox/tree/master/packages/ajax)）
-* [x] [mockjs](http://mockjs.com/) - 超智能的超前开发阶段的后端 API mock 数据
-* [x] [.env](https://github.com/motdotla/dotenv#readme) - 灵活方便的环境变量配置
-* [x] [ESLint](https://cn.eslint.org/) - [nicolaz](https://github.com/nicolaszhao/eslint-config-nicolaz) 风格的 JavaScript 代码审查
-* [x] [lint-staged](https://github.com/okonet/lint-staged) - git commit 阶段自动检测变更代码的 ESLint
 
 ## 功能调校
 
